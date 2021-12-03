@@ -5,10 +5,9 @@ EMBEDDING_FILE_PATH = 'pretrained_weights/glove.6B.50d.txt'
 class naiveEmbeddings():
 
     def __init__(self, cards):
-        self.embeddings_dict = self.loadEmbeddingsDict(EMBEDDING_FILE_PATH)
         self.cards = cards
-
-        # TODO: Normalization words
+        self.embeddings_dict = self.loadEmbeddingsDict(EMBEDDING_FILE_PATH)
+        self.card_embeddings = self.getCardEmbeddings(self.cards)
 
     def loadEmbeddingsDict(self, file_path, max=None):
         embeddings_dict = {}
@@ -25,6 +24,13 @@ class naiveEmbeddings():
 
         return embeddings_dict
 
+    def getCardEmbeddings(self, cards):
+        embeddings = []
+        for card in cards:
+            embeddings.append(self.embeddings_dict[card])
+
+        return embeddings
+
     def getWordEmbeddings(self, words):
         embeddings = []
         for word in words:
@@ -37,24 +43,18 @@ class naiveEmbeddings():
         return embeddings
 
     def predict(self, content):
+        content = content.lower()
         words = content.split(' ')
-        print(words)
 
-        card_embeddings = [self.embeddings_dict[card] for card in self.cards]
         word_embeddings = self.getWordEmbeddings(words)
         card_scores = []
-        for card_embedding in card_embeddings:
+        for card_embedding in self.card_embeddings:
 
             score = 0
             for word_embedding in word_embeddings:
-                distance =  np.linalg.norm(word_embedding - card_embedding)
-                distance -= np.linalg.norm(word_embedding - self.embeddings_dict['a'])
-                distance -= np.linalg.norm(word_embedding - self.embeddings_dict['the'])
-                score += distance
+                score += np.linalg.norm(word_embedding - card_embedding)
 
             card_scores.append(score)
 
-        print(card_scores)
-        print(np.argmin(card_scores))
-        print(self.cards[np.argmin(card_scores)])
-        return self.cards[np.argmin(card_scores)]
+        confidences = 1.0 - (card_scores / np.max(card_scores))
+        return confidences

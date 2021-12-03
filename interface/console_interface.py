@@ -1,4 +1,6 @@
 import termtables
+import numpy as np
+
 from data.cards import animal_cards
 from models.loader import loadModel
 
@@ -19,4 +21,6 @@ class TapAI():
 
     def playerATurn(self):
         a_input = input('Player A: ')
-        self.model.predict(a_input)
+        confidences = self.model.predict(a_input)
+        print(confidences)
+        print(self.cards[np.argmax(confidences)])
