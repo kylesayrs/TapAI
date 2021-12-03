@@ -1,4 +1,4 @@
-pretrained_weights/
+pretrained_weights/*
 __pycache__/
 
 

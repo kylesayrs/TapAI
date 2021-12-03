@@ -1,11 +1,9 @@
 import csv
 import wikipediaapi
+from cards import animal_cards
 
 OUT_FILENAME = './wiki_animals.csv'
 HEADERS = ['name', 'summary', 'content']
-
-NAMES = ['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake',
-         'horse', 'sheep', 'monkey', 'chicken', 'dog', 'pig']
 
 if __name__ == '__main__':
     wiki_wiki = wikipediaapi.Wikipedia(language='en',
@@ -15,7 +13,7 @@ if __name__ == '__main__':
     writer = csv.writer(csvfile)
     writer.writerow(HEADERS)
 
-    for name in NAMES:
+    for name in animal_cards:
         page = wiki_wiki.page(name)
         writer.writerow([name, page.summary, page.text])
 

@@ -12,7 +12,7 @@ Game where you and a partner have to communicate while avoiding a wiretapping AI
 ## Models
 | Model Name          | Status | Difficulty
 | --------------------|:------:|:-------:|
-| Naive Embeddings    |   🟡   |         |
+| Naive Embeddings    |   🟢   |         |
 | Naive Baes          |   🔴   |         |
 | SVM                 |   🔴   |         |
 | Logistic Regression |   🔴   |         |
