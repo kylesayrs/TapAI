@@ -11,6 +11,8 @@ from nltk.stem import WordNetLemmatizer
 sys.path.append("..")
 from data.cards import all_card_sets
 
+# TODO: n-grams, tf-idf
+
 class LemmaTokenizer:
     def __init__(self):
         self.wnl = WordNetLemmatizer()

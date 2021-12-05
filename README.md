@@ -11,6 +11,7 @@ Here are a few card sets along with relevant data sources
     * Wikipedia
 * ATLA Characters
     * Wikipedia
+    * Avatar Wiki
 * Food
     * Wikipedia
     * Amazon fine food reviews
@@ -22,13 +23,13 @@ Here are a few card sets along with relevant data sources
     * Wikipedia
     * Urban dictionary words and definitions
 
-## TODO: Preprocessing/ Tokenization
+## TODO: Preprocessing
 
 ## Models
 | Model Name          | Status | Difficulty (1-5)
 | --------------------|:------:|:-------:|
 | Naive Embeddings    |   🟢   |    1    |
-| Naive Bayes         |   🟢   |    2    |
+| Naive Bayes         |   🟡   |    2    |
 | SVM                 |   🔴   |   (2)   |
 | Logistic Regression |   🔴   |   (2)   |
 | 1D Convolution      |   🔴   |   (3)   |
@@ -38,6 +39,8 @@ Here are a few card sets along with relevant data sources
 | GPT2                |   🔴   |   (5)   |
 | GPT3 (api)          |   🔴   |   (5)   |
 | GAN Approach        |   🔴   |   (?)   |
+
+## TODO: Results
 
 ## Authors
 Kyle Sayers\
