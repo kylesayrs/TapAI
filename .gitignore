@@ -1,5 +1,6 @@
-pretrained_weights/*
+weights/*
 __pycache__/
+notes.txt
 
 
 

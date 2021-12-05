@@ -6,8 +6,10 @@ Game where you and a partner have to communicate while avoiding a wiretapping AI
 ## TODO: Setup Guide
 
 ## Data Collection
-Here are a few potential card sets along with relevant data sources
+Here are a few card sets along with relevant data sources
 * Animals
+    * Wikipedia
+* ATLA Characters
     * Wikipedia
 * Food
     * Wikipedia
@@ -23,20 +25,20 @@ Here are a few potential card sets along with relevant data sources
 ## TODO: Preprocessing/ Tokenization
 
 ## Models
-| Model Name          | Status | Difficulty
+| Model Name          | Status | Difficulty (1-5)
 | --------------------|:------:|:-------:|
-| Naive Embeddings    |   🟢   |  easy   |
-| Naive Baes          |   🔴   |         |
-| SVM                 |   🔴   |         |
-| Logistic Regression |   🔴   |         |
-| 1D Convolution      |   🔴   |         |
-| RNN                 |   🔴   |         |
-| LSTM                |   🔴   |         |
-| GPT2                |   🔴   |         |
-| BERT                |   🔴   |         |
-| GPT3 (api)          |   🔴   |         |
-| GAN Approach        |   🔴   |         |
+| Naive Embeddings    |   🟢   |    1    |
+| Naive Bayes         |   🟢   |    2    |
+| SVM                 |   🔴   |   (2)   |
+| Logistic Regression |   🔴   |   (2)   |
+| 1D Convolution      |   🔴   |   (3)   |
+| RNN                 |   🔴   |   (3)   |
+| LSTM                |   🔴   |   (4)   |
+| BERT                |   🔴   |   (4)   |
+| GPT2                |   🔴   |   (5)   |
+| GPT3 (api)          |   🔴   |   (5)   |
+| GAN Approach        |   🔴   |   (?)   |
 
 ## Authors
-Kyle Sayers
+Kyle Sayers\
 Jimmy Maslen
