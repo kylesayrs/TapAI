@@ -8,6 +8,7 @@ class naiveEmbeddings():
         self.cards = cards
         self.embeddings_dict = self.loadEmbeddingsDict(EMBEDDING_FILE_PATH)
         self.card_embeddings = self.getCardEmbeddings(self.cards)
+        # TODO: Normalize for frequently used card words
 
     def loadEmbeddingsDict(self, file_path, max=None):
         embeddings_dict = {}
@@ -56,5 +57,6 @@ class naiveEmbeddings():
 
             card_scores.append(score)
 
+        # TODO: Use a linear scale from 0 to 1
         confidences = 1.0 - (card_scores / np.max(card_scores))
         return confidences

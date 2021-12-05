@@ -1,4 +1,7 @@
 import numpy as np
 
-animal_cards = np.array(['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake',
-                         'horse', 'sheep', 'monkey', 'chicken', 'dog', 'pig'])
+animal_cards = np.array(['rat', 'tiger', 'rabbit', 'dragon', 'snake',
+                         'sheep', 'monkey', 'chicken', 'pig'])
+
+vegetable_cards = np.array(['broccoli', 'cabbage', 'radish', 'carrot',
+                       'lettuce', 'cauliflower', 'tomato', 'cucumber', 'spinach'])

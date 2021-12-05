@@ -35,6 +35,7 @@ Here are a few potential card sets along with relevant data sources
 | GPT2                |   🔴   |         |
 | BERT                |   🔴   |         |
 | GPT3 (api)          |   🔴   |         |
+| GAN Approach        |   🔴   |         |
 
 ## Authors
 Kyle Sayers
