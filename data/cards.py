@@ -7,7 +7,10 @@ class Card():
         self.wiki_name = self.name if wiki_name is None else wiki_name
 
     def __eq__(self, other):
-        return self.name == other.name
+        if type(other) is Card:
+            return self.name == other.name
+        else:
+            return self.name == other
 
     def __str__(self):
         return self.name

@@ -47,7 +47,7 @@ if __name__ == '__main__':
             sentences = splitSentences(page_text)
 
             for sentence in sentences:
-                extracted_data.append([sentence, name])
+                extracted_data.append([sentence, card.name])
 
         cleaned_df = pd.DataFrame(extracted_data, columns=COLUMN_NAMES)
         cleaned_df.to_csv(out_filename, sep='|', index=False)
