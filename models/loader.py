@@ -1,9 +1,12 @@
-from models.naiveEmbeddings import naiveEmbeddings
+AVAILABLE_MODELS = ['naive_embeddings', 'naive_bayes']
 
-AVAILABLE_MODELS = ['naive_embeddings']
-
-def loadModel(model_name, cards):
+def loadModel(model_name, card_set):
     assert model_name in AVAILABLE_MODELS
 
     if model_name == 'naive_embeddings':
-        return naiveEmbeddings(cards)
+        from models.naiveEmbeddings import naiveEmbeddings
+        return naiveEmbeddings(card_set)
+
+    if model_name == 'naive_bayes':
+        from models.naiveBayes import naiveBayes
+        return naiveBayes(card_set, pretrained=True)

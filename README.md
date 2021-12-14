@@ -1,27 +1,47 @@
 # TapAI
-Game where you and a partner have to communicate while avoiding a wiretapping AI. Formalized as a sentiment analysis problem fine-tuned using wikipedia data.
+Game where you and a partner have to communicate while avoiding a wiretapping AI. Formalized as a sentiment analysis problem fine-tuned on nlp data.
 
 ## TODO: Usage
 
-## TODO: Training Guide
+## TODO: Setup Guide
 
-## TODO: Data Collection
+## Data Collection
+Here are a few card sets along with relevant data sources
+* Animals
+    * Wikipedia
+* ATLA Characters
+    * Wikipedia
+    * Avatar Wiki
+* Food
+    * Wikipedia
+    * Amazon fine food reviews
+* Products
+    * Wikipedia
+    * Amazon reviews
+    * Home depot product search relevance
+* Slang
+    * Wikipedia
+    * Urban dictionary words and definitions
 
-## TODO: Preprocessing/ Tokenization
+## TODO: Preprocessing
 
 ## Models
-| Model Name          | Status | Difficulty
+| Model Name          | Status | Difficulty (1-5)
 | --------------------|:------:|:-------:|
-| Naive Embeddings    |   🟢   |         |
-| Naive Baes          |   🔴   |         |
-| SVM                 |   🔴   |         |
-| Logistic Regression |   🔴   |         |
-| RCNN                |   🔴   |         |
-| LSTM                |   🔴   |         |
-| GPT2                |   🔴   |         |
-| BERT                |   🔴   |         |
-| GPT3                |   🔴   |         |
+| Naive Embeddings    |   🟢   |    1    |
+| Naive Bayes         |   🟡   |    2    |
+| SVM                 |   🔴   |   (2)   |
+| Logistic Regression |   🔴   |   (2)   |
+| 1D Convolution      |   🔴   |   (3)   |
+| RNN                 |   🔴   |   (3)   |
+| LSTM                |   🔴   |   (4)   |
+| BERT                |   🔴   |   (4)   |
+| GPT2                |   🔴   |   (5)   |
+| GPT3 (api)          |   🔴   |   (5)   |
+| GAN Approach        |   🔴   |   (?)   |
+
+## TODO: Results
 
 ## Authors
-Kyle Sayers
+Kyle Sayers\
 Jimmy Maslen

@@ -1,13 +1,14 @@
 import numpy as np
 
-EMBEDDING_FILE_PATH = 'pretrained_weights/glove.6B.50d.txt'
+EMBEDDING_FILE_PATH = 'weights/glove.6B.50d.txt'
 
 class naiveEmbeddings():
 
-    def __init__(self, cards):
-        self.cards = cards
+    def __init__(self, card_set):
+        self.cards = card_set.cards
         self.embeddings_dict = self.loadEmbeddingsDict(EMBEDDING_FILE_PATH)
         self.card_embeddings = self.getCardEmbeddings(self.cards)
+        # TODO: Normalize for frequently used card words
 
     def loadEmbeddingsDict(self, file_path, max=None):
         embeddings_dict = {}
@@ -27,7 +28,7 @@ class naiveEmbeddings():
     def getCardEmbeddings(self, cards):
         embeddings = []
         for card in cards:
-            embeddings.append(self.embeddings_dict[card])
+            embeddings.append(self.embeddings_dict[card.name])
 
         return embeddings
 
