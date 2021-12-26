@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="script.js" type="module" defer></script>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="home" class="jumbotron text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 p-3 mb-4" style="border: solid black 1px;">
+                    <h4> Join the Queue: </h4>
+                    <div class="mb-2">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="name">Name:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name">
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="role"> Role: </label>
+                            </div>
+                            <div class="col-md-9">
+                                <select id="role" class="form-control">
+                                    <!-- <option value="either">Random</option> -->
+                                    <option value="guesser">Guesser</option>
+                                    <option value="describer">Describer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input id="jq" type="button" value="Join Queue" class="btn btn-primary">
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="in_queue" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <p> Currently in queue </p>
+                    <p> Looking for opponent... </p>
+                    <input id="lq" type="button" value="Leave Queue" class="btn btn-danger">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>     
+    </div>
+    <div id="game_started_describer" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> Game Started! </p>
+                            <p> You are the describer. </p>
+                            <p> Your choices to describe are: rat, ox, tiger, rabbit, dragon, snake, horse, sheep, monkey, rooster, dog, or pig. </p>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="choice">Choice:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <select id="choice" class="form-control">
+                                <option value="rat">Rat</option>
+                                <option value="ox">Ox</option>
+                                <option value="tiger">Tiger</option>
+                                <option value="rabbit">Rabbit</option>
+                                <option value="dragon">Dragon</option>
+                                <option value="snake">Snake</option>
+                                <option value="horse">Horse</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="monkey">Monkey</option>
+                                <option value="rooster">Rooster</option>
+                                <option value="dog">Dog</option>
+                                <option value="pig">Pig</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="role"> Desciption: </label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                            <input type="text" id="description" class="form-control" placeholder="Enter your description">
+                        </div>
+                        <div class="col-md-12">
+                            <input id="sd" type="button" value="Submit Description" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="game_started_guesser" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> Game Started! </p>
+                            <p> You are the gesser. </p>
+                            <p> Waiting for describer to create description. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="guess_phase_describer" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> Waiting for guesser to guess animal. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="guess_phase_guesser" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> The description is: </p>
+                            <p id="given_description" class="font-weight-bold">  </p>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="role"> Guess: </label>
+                        </div>
+                        <div class="col-md-9 mb-3">
+                            <select id="guess" class="form-control">
+                                <option value="rat">Rat</option>
+                                <option value="ox">Ox</option>
+                                <option value="tiger">Tiger</option>
+                                <option value="rabbit">Rabbit</option>
+                                <option value="dragon">Dragon</option>
+                                <option value="snake">Snake</option>
+                                <option value="horse">Horse</option>
+                                <option value="sheep">Sheep</option>
+                                <option value="monkey">Monkey</option>
+                                <option value="rooster">Rooster</option>
+                                <option value="dog">Dog</option>
+                                <option value="pig">Pig</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input id="sg" type="button" value="Submit Guess" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div id="game_results" class="jumbotron text-center" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 py-3" style="border: solid black 1px;"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p> The description was: </p>
+                            <p id="game_description" class="font-weight-bold">  </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p> The guess was: </p>
+                            <p id="game_guess" class="font-weight-bold">  </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p> The animal was: </p>
+                            <p id="game_animal" class="font-weight-bold">  </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p id="result"> You win! </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
