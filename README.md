@@ -43,5 +43,4 @@ Here are a few card sets along with relevant data sources
 ## TODO: Results
 
 ## Authors
-Kyle Sayers\
-Jimmy Maslen
+Kyle Sayers

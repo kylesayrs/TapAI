@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 import pandas as pd
 
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.pipeline import Pipeline
 from nltk import word_tokenize
@@ -24,13 +24,13 @@ lemma_tokenizer = LemmaTokenizer()
 nltk_stop_words = ' '.join(NltkStopWords.words('english'))
 lemmatized_nltk_stop_words = lemma_tokenizer(nltk_stop_words)
 
-class naiveBayes():
+class SVMClassifer():
 
     def __init__(self, card_set, pretrained=True):
         self.card_set = card_set
-        self.weight_path = os.path.join(Path(__file__).parent, f'../weights/nb_weights_{self.card_set.name}.weights')
+        self.weight_path = os.path.join(Path(__file__).parent, f'../weights/svm_weights_{self.card_set.name}.weights')
 
-        self._model    = MultinomialNB(alpha=1.0, fit_prior=False)
+        self._model    = LinearSVC(alpha=1.0, fit_prior=False)
         self._pipeline = Pipeline(
                            steps=[('counter', CountVectorizer(tokenizer=lemma_tokenizer,
                                                               ngram_range=(1, 2),
@@ -88,6 +88,6 @@ class naiveBayes():
 if __name__ == '__main__':
     for card_set in all_card_sets:
         print(f'Training {card_set.name}')
-        model = naiveBayes(card_set=card_set, pretrained=False)
+        model = SVMClassifer(card_set=card_set, pretrained=False)
         model.train()
         model.saveWeights()
