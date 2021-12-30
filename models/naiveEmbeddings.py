@@ -1,6 +1,6 @@
 import numpy as np
 
-EMBEDDING_FILE_PATH = 'weights/glove.6B.50d.txt'
+EMBEDDING_FILE_PATH = '/Users/jimmymaslen/Documents/GitHub/TapAI/weights/glove.6B.50d.txt'
 
 class naiveEmbeddings():
 

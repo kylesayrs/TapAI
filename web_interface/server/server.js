@@ -84,7 +84,22 @@ io.on("connection", socket => {
             let game = games.find(e => e.players.some(e => e.id === socket.id))
             game.description = data.description
             game.choice = data.choice
-            /* broudcase description to both players */
+            
+            /* call python script to create ai guess */
+            console.log("running python script")
+
+            let spawn = require("child_process").spawn
+            let pythonProcess = spawn('/Users/jimmymaslen/opt/miniconda3/envs/ml135_env_sp21/bin/python', ["/Users/jimmymaslen/Documents/GitHub/TapAI/make_guess.py", game.description])
+
+            pythonProcess.stdout.on('data', function(data) {
+                game.ai_guess = data.toString()
+                console.log(game.ai_guess)
+            })
+            pythonProcess.stderr.on('data', function(data) {
+                console.log(data.toString())
+            })
+
+            /* broadcast description to both players */
             io.emit("description", game)
             cb()
         }
