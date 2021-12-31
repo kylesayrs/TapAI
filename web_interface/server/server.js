@@ -20,8 +20,6 @@ io.on("connection", socket => {
             console.log("No id")
         } else if (queue.some(e => e.id === socket.id)) {
             console.log("Already in queue")
-        } else if (!data.name) {
-            console.log("No name")
         } else {
             queue.push(data)
             
@@ -89,6 +87,8 @@ io.on("connection", socket => {
             console.log("running python script")
 
             let spawn = require("child_process").spawn
+
+            /* todo: figure out how to change this to relative file path */
             let pythonProcess = spawn('/Users/jimmymaslen/opt/miniconda3/envs/ml135_env_sp21/bin/python', ["/Users/jimmymaslen/Documents/GitHub/TapAI/make_guess.py", game.description])
 
             pythonProcess.stdout.on('data', function(data) {
@@ -117,6 +117,7 @@ io.on("connection", socket => {
             let game = games.find(e => e.players.some(e => e.id === socket.id))
             game.player_guess = data.guess
             /* broudcase guess to both players */
+            console.log(game.ai_guess)
             io.emit("guessSubmitted", game)
         }
     })

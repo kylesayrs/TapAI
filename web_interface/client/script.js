@@ -1,6 +1,5 @@
 import { io } from "socket.io-client";
 
-const nameInput = document.getElementById("name");
 const roleInput = document.getElementById("role");
 const joinQueueButton = document.getElementById("jq");
 const leaveQueueButton = document.getElementById("lq");
@@ -24,6 +23,7 @@ const resultsPage = document.getElementById("game_results");
 
 const gameDescription = document.getElementById("game_description");
 const gameGuess = document.getElementById("game_guess");
+const gameAIGuess = document.getElementById("ai_guess");
 const gameAnimal = document.getElementById("game_animal");
 const gameResult = document.getElementById("result");
 
@@ -64,6 +64,7 @@ socket.on("guessSubmitted", game => {
         resultsPage.style.display = "block";
         gameDescription.innerHTML = game.description;
         gameGuess.innerHTML = game.choice;
+        gameAIGuess.innerHTML = game.ai_guess;
         gameAnimal.innerHTML = game.player_guess;
         gameResult.innerHTML = game.choice === game.player_guess ? "You win!" : "You lose!";
     }
@@ -76,8 +77,8 @@ submitGuessButton.addEventListener("click", () => {
 
 
 
-const joinQueue = (name, role) => {
-    socket.emit("joinQueue", { id: socket.id, name: name, role: role }, queueJoined);
+const joinQueue = (role) => {
+    socket.emit("joinQueue", { id: socket.id, role: role }, queueJoined);
 }
 
 const leaveQueue = () => {
@@ -85,7 +86,7 @@ const leaveQueue = () => {
 }
 
 joinQueueButton.addEventListener("click", () => {
-    joinQueue(nameInput.value, roleInput.value);
+    joinQueue(roleInput.value);
 });
 
 leaveQueueButton.addEventListener("click", () => {  
