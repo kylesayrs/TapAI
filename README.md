@@ -10,9 +10,8 @@ To run the game in the web interface:
 1. Install Node.js and npm (https://nodejs.org/en/download/)
 2. Clone this repository if you haven't already: `git clone https://github.com/kylesayrs/TapAI.git`
 3. Go to web interface folder: `cd TapAI/web_interface`
-4. Run `npm i`
-5. Start the server using `cd server && npm run dev`
-6. Open another terminal window and start the client using `cd client && npm start`
+5. Go to the server folder, run `npm i`, and then start the server with `npm run dev`
+6. Open another terminal window, go to the client folder, run `npm i`, and then start the client with `npm start`
 7. Go to `http://localhost:8080`
 
 ## Data Collection
@@ -53,5 +52,4 @@ Here are a few card sets along with relevant data sources
 ## TODO: Results
 
 ## Authors
-Kyle Sayers\
-Jimmy Maslen
+Kyle Sayers

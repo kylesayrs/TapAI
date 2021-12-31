@@ -1,24 +1,21 @@
 import os
 import sys
 import re
-import wikipediaapi
+import requests
 import numpy as np
 import pandas as pd
+from dotenv import load_dotenv
+
 from cards import all_card_sets
 
-OUT_DIR = './wiki_data'
+API_DICT_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={key}'
+API_THES_URL = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={key}'
+
+OUT_DIR = './mwd_data'
 CARD_SETS = all_card_sets
 
 COLUMN_NAMES = ['page_title', 'card', 'sentence']
 PUNCTUATION_REGEX = r'\.\s+|!\s+|\?\s+|:\s+'
-
-VERBOSE = True
-
-# TODO: Punctionation can sometimes end up at the end of a line and not get removed
-# TODO: account for author names like W.D. debois
-# TODO: skip pages that have already been downloaded
-# TODO: Sometimes the api does not return any values the for "see also" section.
-# TODO: Add option of grabbing all pages from all links on a page
 
 def splitSentences(text):
     all_sentences = []
@@ -62,8 +59,13 @@ def getPageData(page, card_name, r_titles=['See also'], r_depth=1):
     return data
 
 if __name__ == '__main__':
-    wiki_wiki = wikipediaapi.Wikipedia(language='en',
-                                 extract_format=wikipediaapi.ExtractFormat.WIKI)
+    load_dotenv()
+
+    dict_api_key = os.getenv('MWD_DICT_API_KEY')
+    res = requests.get(API_DICT_URL.format(word='science', key=dict_api_key))
+    print(res)
+    print(res.content)
+    sys.exit(0)
 
     for card_set in CARD_SETS:
         out_filename = os.path.join(OUT_DIR, f'{card_set.name}.csv')
@@ -71,7 +73,7 @@ if __name__ == '__main__':
 
         for card in card_set.cards:
             page = wiki_wiki.page(card.wiki_name)
-            page_data = getPageData(page, card.name, r_titles=['See also'], r_depth=1)
+            page_data = getPageData(page, card.name)
 
             extracted_data += page_data
 
