@@ -14,7 +14,7 @@ To run the game in the web interface:
 6. Open another terminal window, go to the client folder, run `npm i`, and then start the client with `npm start`
 7. Go to `http://localhost:8080`
 
-The web app is also live at https://tapai.herokuapp.com, but the ai is not working there yet.
+The web app is also live at https://tapai.herokuapp.com.
 
 ## Data Collection
 Here are a few card sets along with relevant data sources
