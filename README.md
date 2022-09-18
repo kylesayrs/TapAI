@@ -1,5 +1,5 @@
 # TapAI
-Game where you and a partner have to communicate while avoiding a wiretapping AI. Formalized as a sentiment analysis problem fine-tuned on nlp data.
+Game where you and a partner have to communicate while avoiding a wiretapping AI
 
 ## TODO: Usage
 
