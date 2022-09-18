@@ -11,7 +11,7 @@ from nltk import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords as NltkStopWords
 
-sys.path.append('..')
+sys.path.append("..")
 from data.cards import all_card_sets
 
 class LemmaTokenizer:
@@ -21,27 +21,27 @@ class LemmaTokenizer:
         return [self.wnl.lemmatize(t) for t in word_tokenize(doc)]
 
 lemma_tokenizer = LemmaTokenizer()
-nltk_stop_words = ' '.join(NltkStopWords.words('english'))
+nltk_stop_words = " ".join(NltkStopWords.words("english"))
 lemmatized_nltk_stop_words = lemma_tokenizer(nltk_stop_words)
 
 class SVMClassifer():
 
     def __init__(self, card_set, pretrained=True):
         self.card_set = card_set
-        self.weight_path = os.path.join(Path(__file__).parent, f'../weights/svm_weights_{self.card_set.name}.weights')
+        self.weight_path = os.path.join(Path(__file__).parent, f"../weights/svm_weights_{self.card_set.name}.weights")
 
         self._model    = LinearSVC(alpha=1.0, fit_prior=False)
         self._pipeline = Pipeline(
-                           steps=[('counter', CountVectorizer(tokenizer=lemma_tokenizer,
+                           steps=[("counter", CountVectorizer(tokenizer=lemma_tokenizer,
                                                               ngram_range=(1, 2),
                                                               stop_words=lemmatized_nltk_stop_words)),
-                                  ('tfidf', TfidfTransformer(smooth_idf=False))])
+                                  ("tfidf", TfidfTransformer(smooth_idf=False))])
 
         if pretrained:
             self.loadWeights()
 
-    def loadWeights(self):
-        weights_file = open(self.weight_path, 'rb')
+    def load_weights(self):
+        weights_file = open(self.weight_path, "rb")
 
         [model_state, pipeline_state] = pickle.load(weights_file)
 
@@ -52,8 +52,8 @@ class SVMClassifer():
 
         weights_file.close()
 
-    def saveWeights(self):
-        weights_file = open(self.weight_path, 'wb')
+    def save_weights(self):
+        weights_file = open(self.weight_path, "wb")
 
         self._pipeline.set_params(counter__tokenizer=None)
 
@@ -67,10 +67,10 @@ class SVMClassifer():
         weights_file.close()
 
     def train(self):
-        data = pd.read_csv(f'../data/wiki_data/{self.card_set.name}.csv', sep='|')
+        data = pd.read_csv(f"../data/wiki_data/{self.card_set.name}.csv", sep="|")
 
-        X = self._pipeline.fit_transform(data['sentence']).toarray()
-        y = np.array(list(map(self.card_set.cards.index, data['card'])))
+        X = self._pipeline.fit_transform(data["sentence"]).toarray()
+        y = np.array(list(map(self.card_set.cards.index, data["card"])))
         assert len(X) == len(y)
 
         self._model = self._model.fit(X, y)
@@ -79,15 +79,15 @@ class SVMClassifer():
         pred_vec = self._pipeline.transform([content]).toarray()
 
         if np.all((pred_vec == 0)):
-            print(f'WARNING: {content} has no recognized words')
+            print(f"WARNING: {content} has no recognized words")
 
         confidence = self._model.predict_proba(pred_vec)[0]
 
         return confidence
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for card_set in all_card_sets:
-        print(f'Training {card_set.name}')
+        print(f"Training {card_set.name}")
         model = SVMClassifer(card_set=card_set, pretrained=False)
         model.train()
-        model.saveWeights()
+        model.save_weights()

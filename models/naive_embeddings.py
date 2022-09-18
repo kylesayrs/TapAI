@@ -1,21 +1,21 @@
 import numpy as np
 
-EMBEDDING_FILE_PATH = '/Users/jimmymaslen/Documents/GitHub/TapAI/weights/glove.6B.50d.txt'
+#EMBEDDING_FILE_PATH = "/Users/jimmymaslen/Documents/GitHub/TapAI/weights/glove.6B.50d.txt"
+EMBEDDING_FILE_PATH = "/Users/poketopa/Desktop/Projects/TapAI/weights/glove.6B.50d.txt"
 
-class naiveEmbeddings():
-
+class NaiveEmbeddings():
     def __init__(self, card_set):
         self.cards = card_set.cards
-        self.embeddings_dict = self.loadEmbeddingsDict(EMBEDDING_FILE_PATH)
-        self.card_embeddings = self.getCardEmbeddings(self.cards)
+        self.embeddings_dict = self.load_embeddings_dict(EMBEDDING_FILE_PATH)
+        self.card_embeddings = self.get_card_embeddings(self.cards)
         # TODO: Normalize for frequently used card words
 
-    def loadEmbeddingsDict(self, file_path, max=None):
+    def load_embeddings_dict(self, file_path, max=None):
         embeddings_dict = {}
 
         with open(file_path) as embedding_file:
             for i, line in enumerate(embedding_file):
-                values = line.split(' ')
+                values = line.split(" ")
                 word = values[0]
                 vector = np.asarray(values[1:], np.float32)
                 embeddings_dict[word] = vector
@@ -25,29 +25,29 @@ class naiveEmbeddings():
 
         return embeddings_dict
 
-    def getCardEmbeddings(self, cards):
+    def get_card_embeddings(self, cards):
         embeddings = []
         for card in cards:
             embeddings.append(self.embeddings_dict[card.name])
 
         return embeddings
 
-    def getWordEmbeddings(self, words):
+    def get_word_embeddings(self, words):
         embeddings = []
         for word in words:
             try:
                 embeddings.append(self.embeddings_dict[word])
             except KeyError as e:
-                print(f'Warning: {word} not in embeddings dict')
+                print(f"Warning: {word} not in embeddings dict")
                 continue
 
         return embeddings
 
     def predict(self, content):
         content = content.lower()
-        words = content.split(' ')
+        words = content.split(" ")
 
-        word_embeddings = self.getWordEmbeddings(words)
+        word_embeddings = self.get_word_embeddings(words)
         card_scores = []
         for card_embedding in self.card_embeddings:
 

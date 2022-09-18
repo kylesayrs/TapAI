@@ -55,3 +55,4 @@ Here are a few card sets along with relevant data sources
 
 ## Authors
 Kyle Sayers
+Jimmy Maslen

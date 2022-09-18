@@ -22,7 +22,7 @@ io.on("connection", socket => {
             console.log("Already in queue")
         } else {
             queue.push(data)
-            
+
 
             /* check queue for 2 people with the same role */
             if (queue.filter(e => e.role !== data.role).length >= 1) {
@@ -65,8 +65,8 @@ io.on("connection", socket => {
             console.log("Not in queue")
         } else {
             queue = queue.filter(e => e.id !== socket.id)
-            io.emit("queueUpdate", queue)   
-            cb()    
+            io.emit("queueUpdate", queue)
+            cb()
         }
     })
 
@@ -82,14 +82,20 @@ io.on("connection", socket => {
             let game = games.find(e => e.players.some(e => e.id === socket.id))
             game.description = data.description
             game.choice = data.choice
-            
+
             /* call python script to create ai guess */
             console.log("running python script")
 
             let spawn = require("child_process").spawn
 
             /* todo: figure out how to change this to relative file path */
-            let pythonProcess = spawn('/Users/jimmymaslen/opt/miniconda3/envs/ml135_env_sp21/bin/python', ["/Users/jimmymaslen/Documents/GitHub/TapAI/make_guess.py", game.description])
+            let pythonProcess = spawn(
+                "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3",
+                [
+                    "/Users/poketopa/Desktop/Projects/TapAI/make_guess.py",
+                    game.description
+                ]
+            )
 
             pythonProcess.stdout.on('data', function(data) {
                 game.ai_guess = data.toString()
