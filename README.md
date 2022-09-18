@@ -37,19 +37,18 @@ Here are a few card sets along with relevant data sources
 ## TODO: Preprocessing
 
 ## Models
-| Model Name          | Status | Difficulty (1-5)
-| --------------------|:------:|:-------:|
-| Naive Embeddings    |   🟢   |    1    |
-| Naive Bayes         |   🟡   |    2    |
-| SVM                 |   🔴   |   (2)   |
-| Logistic Regression |   🔴   |   (2)   |
-| 1D Convolution      |   🔴   |   (3)   |
-| RNN                 |   🔴   |   (3)   |
-| LSTM                |   🔴   |   (4)   |
-| BERT                |   🔴   |   (4)   |
-| GPT2                |   🔴   |   (5)   |
-| GPT3 (api)          |   🔴   |   (5)   |
-| GAN Approach        |   🔴   |   (?)   |
+| Feature Extractor | Model Name | Status | Performance (1-5) |
+| ----------------- | -----------| ------ | ---------00------ |
+| Tfidf         | Naive Bayes         |   🟢   |    1    |
+| Avg Tokenizer | Cosine Similarity   |   🟡   |    2    |
+| Tfidf         | Logistic Regression |   🔴   |   (2)   |
+| Tokenizer     | 1D Convolution      |   🔴   |   (3)   |
+| Tokenizer     | LSTM                |   🔴   |   (4)   |
+| Tokenizer     | Zero Shot Bert MNLI |   🔴   |   (4)   |
+| Tokenizer     | Bert                |   🔴   |   (4)   |
+| Tokenizer     | Bert Pretrained MLM |   🔴   |   (4)   |
+| Tokenizer     | Zero Shot GPT2      |   🔴   |   (5)   |
+| Tokenizer     | Zero Shot GPT3      |   🔴   |   (5)   |
 
 ## TODO: Results
 

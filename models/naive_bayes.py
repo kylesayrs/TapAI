@@ -99,6 +99,7 @@ class NaiveBayes(ModelBase):
 
     def predict(self, text: str):
         pred_vec = self._pipeline.transform([text]).toarray()
+        print(pred_vec[0])
 
         if self.debug and numpy.all((pred_vec == 0)):
             print(f"WARNING: {content} has no recognized words")
