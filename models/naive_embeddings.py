@@ -1,7 +1,5 @@
 import numpy as np
-
-#EMBEDDING_FILE_PATH = "/Users/jimmymaslen/Documents/GitHub/TapAI/weights/glove.6B.50d.txt"
-EMBEDDING_FILE_PATH = "/Users/poketopa/Desktop/Projects/TapAI/weights/glove.6B.50d.txt"
+from transformers import PreTrainedTokenizer
 
 class NaiveEmbeddings():
     def __init__(self, card_set):

@@ -1,13 +1,14 @@
 import os
 
-from models import NaiveBayes
+from models import load_model
 from data import all_card_sets, load_data
 
 if __name__ == "__main__":
     data_source = "wikipedia"
+    model_name =
 
     for card_set in all_card_sets:
-        model = NaiveBayes(card_set=card_set, weights_path=None)
+        model = load_model(card_set=card_set, weights_path=None)
         print(f"Training {model.name} on {card_set.name}")
 
         x_train, y_train = load_data(data_source, card_set.name, split="train")

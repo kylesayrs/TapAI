@@ -9,12 +9,11 @@ class TapAI():
         print(f"Using card set \"{card_set.name}\"...")
         print(f"Loading model {model.name}...")
 
+        self.model = model
         self.grid_shape = grid_shape
         self.card_set = card_set
         self.num_cards = grid_shape[0] * grid_shape[1]
         assert len(self.card_set.cards) == self.num_cards
-
-        self.model = model
 
     def print_board(self):
         cards = np.array(self.card_set.cards)
