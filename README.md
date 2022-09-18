@@ -38,7 +38,7 @@ Here are a few card sets along with relevant data sources
 
 ## Models
 | Feature Extractor | Model Name | Status | Performance (1-5) |
-| ----------------- | -----------| ------ | ---------00------ |
+| ----------------- | -----------| ------ | ----------------- |
 | Tfidf         | Naive Bayes         |   🟢   |    1    |
 | Avg Tokenizer | Cosine Similarity   |   🟡   |    2    |
 | Tfidf         | Logistic Regression |   🔴   |   (2)   |
